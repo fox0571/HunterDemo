@@ -24,6 +24,9 @@
 		98BE6B9418C894B4009D5673 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE6B6F18C894B4009D5673 /* UIKit.framework */; };
 		98BE6B9C18C894B4009D5673 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 98BE6B9A18C894B4009D5673 /* InfoPlist.strings */; };
 		98BE6B9E18C894B4009D5673 /* HunterVSPreyDEMOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BE6B9D18C894B4009D5673 /* HunterVSPreyDEMOTests.m */; };
+		98BE6BE918C9DD3F009D5673 /* point.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BE6BE818C9DD3F009D5673 /* point.png */; };
+		98BE6BEB18C9E152009D5673 /* scor.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BE6BEA18C9E152009D5673 /* scor.png */; };
+		98BE6BED18CA0FA3009D5673 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 98BE6BEC18CA0FA3009D5673 /* bg.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		98BE6B9918C894B4009D5673 /* HunterVSPreyDEMOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HunterVSPreyDEMOTests-Info.plist"; sourceTree = "<group>"; };
 		98BE6B9B18C894B4009D5673 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		98BE6B9D18C894B4009D5673 /* HunterVSPreyDEMOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HunterVSPreyDEMOTests.m; sourceTree = "<group>"; };
+		98BE6BE818C9DD3F009D5673 /* point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point.png; sourceTree = "<group>"; };
+		98BE6BEA18C9E152009D5673 /* scor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scor.png; sourceTree = "<group>"; };
+		98BE6BEC18CA0FA3009D5673 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +134,10 @@
 				98BE6B8318C894B4009D5673 /* ViewController.m */,
 				98BE6B8518C894B4009D5673 /* MyScene.h */,
 				98BE6B8618C894B4009D5673 /* MyScene.m */,
+				98BE6BEC18CA0FA3009D5673 /* bg.jpg */,
+				98BE6BEA18C9E152009D5673 /* scor.png */,
 				98BE6B8818C894B4009D5673 /* Spaceship.png */,
+				98BE6BE818C9DD3F009D5673 /* point.png */,
 				98BE6B8A18C894B4009D5673 /* Images.xcassets */,
 				98BE6B7418C894B4009D5673 /* Supporting Files */,
 			);
@@ -242,6 +251,9 @@
 			files = (
 				98BE6B7818C894B4009D5673 /* InfoPlist.strings in Resources */,
 				98BE6B8B18C894B4009D5673 /* Images.xcassets in Resources */,
+				98BE6BEB18C9E152009D5673 /* scor.png in Resources */,
+				98BE6BE918C9DD3F009D5673 /* point.png in Resources */,
+				98BE6BED18CA0FA3009D5673 /* bg.jpg in Resources */,
 				98BE6B8918C894B4009D5673 /* Spaceship.png in Resources */,
 				98BE6B8118C894B4009D5673 /* Main.storyboard in Resources */,
 			);
@@ -395,8 +407,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HunterVSPreyDEMO/HunterVSPreyDEMO-Prefix.pch";
 				INFOPLIST_FILE = "HunterVSPreyDEMO/HunterVSPreyDEMO-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -409,8 +423,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HunterVSPreyDEMO/HunterVSPreyDEMO-Prefix.pch";
 				INFOPLIST_FILE = "HunterVSPreyDEMO/HunterVSPreyDEMO-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

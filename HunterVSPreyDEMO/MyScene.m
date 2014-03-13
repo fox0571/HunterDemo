@@ -28,82 +28,53 @@ NSMutableArray *preyArray;
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        //backgroud init
         backgroud = [SKSpriteNode spriteNodeWithImageNamed:@"bg.jpg"];
         [backgroud setName:@"back"];
         [backgroud setAnchorPoint:CGPointZero];
-        
-        CGPoint center = CGPointMake(CGRectGetMidX(self.frame),
-                                    CGRectGetMidY(self.frame));
-        
-        //NSValue *value=[NSValue valueWithCGPoint:center];
-        //preyArray=[NSMutableArray arrayWithObject:value];
-
-        hunter = [SKSpriteNode spriteNodeWithImageNamed:@"scor"];
-        hunter.position = center;
-        
-        labelX=[SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        labelX.fontSize = fontsz;
-        labelX.text = [NSString stringWithFormat:@"%f",center.x];
-        labelX.position=CGPointMake(CGRectGetMidX(self.frame)+50,
-                                   CGRectGetMidY(self.frame)+50);
-        labelY=[SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        labelY.fontSize = fontsz;
-        labelY.text = [NSString stringWithFormat:@"%f",center.y];
-        labelY.position=CGPointMake(CGRectGetMidX(self.frame)+50,
-                                    CGRectGetMidY(self.frame)+80);
-        
-        
-        
         [self addChild:backgroud];
+        //hunter init
+        hunter = [SKSpriteNode spriteNodeWithImageNamed:@"scor"];
+        hunter.position = CGPointMake(CGRectGetMidX(self.frame),
+                                      CGRectGetMidY(self.frame));
+        
+        //random the prey location
+        SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"point.png"];
+        for (int i=0;i<15;i++){
+            SKSpriteNode *prey=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(9.0, 9.0)];
+            prey.position=CGPointMake(rand()%360,rand()%480);
+            //NSLog(NSStringFromCGPoint(prey.position));
+            [self addChild:prey];
+        }
+        //NSLog(NSStringFromCGPoint(CGPointMake(CGRectGetMaxX(self.frame),
+          //                        CGRectGetMaxY(self.frame))));
+        
         [self addChild:hunter];
-        //[self addChild:labelX];
-        //[self addChild:labelY];
+        
     }
     return self;
 }
 
--(void) block{
-    [preyArray removeObjectAtIndex:0];
-    run=0;
-}
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        
         NSValue *value=[NSValue valueWithCGPoint:location];
         [preyArray addObject:value];
-        if (!run){
-            run=1;
-            CGPoint positionOfHunter=hunter.position;
+      
+        CGPoint positionOfHunter=hunter.position;
             
-            float deltaX,deltaY;
-            //CGPoint location=[[preyArray objectAtIndex:0] CGPointValue];
-            deltaX=[[preyArray objectAtIndex:0] CGPointValue].x-positionOfHunter.x;
-            deltaY=[[preyArray objectAtIndex:0] CGPointValue].y-positionOfHunter.y;
-            //CGPoint deltaPoint=CGPointMake(deltaX, deltaY);
-            //NSLog(NSStringFromCGPoint(deltaPoint));
-            SKAction *actionx=[SKAction moveByX:deltaX/speed y:0 duration:1];
-            SKAction *actiony=[SKAction moveByX:0 y:deltaY/speed duration:1];
-            SKAction *sequence=[SKAction sequence:@[actionx, actiony]];
+        float deltaX,deltaY;
+        deltaX=[[preyArray objectAtIndex:0] CGPointValue].x-positionOfHunter.x;
+        deltaY=[[preyArray objectAtIndex:0] CGPointValue].y-positionOfHunter.y;
+        SKAction *actionx=[SKAction moveByX:deltaX/speed y:0 duration:1];
+        SKAction *actiony=[SKAction moveByX:0 y:deltaY/speed duration:1];
+        SKAction *sequence=[SKAction sequence:@[actionx, actiony]];
             
-            //[hunter runAction:actionx];
-            //[hunter runAction:actiony];
-            [hunter runAction:[SKAction repeatAction:sequence count:speed] completion:^{
-                [preyArray removeObjectAtIndex:0];
-                run=0;}];
-            /*
-            if (hunter.position.x==location.x && hunter.position.y==location.y){
-                NSLog(@"RUN here");
-
-                [preyArray removeObjectAtIndex:0];
-                run=0;
-            }*/
+        [hunter runAction:actionx];
             
-            
-        }
+        
         SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"point"];
         sprite.position = location;
         SKAction *action = [SKAction rotateByAngle:M_PI duration:1];

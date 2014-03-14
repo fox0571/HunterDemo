@@ -27,29 +27,35 @@ NSMutableArray *preyArray;
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        
+        float minx=CGRectGetMinX(self.frame);
+        float miny=CGRectGetMinY(self.frame);
+        float maxx=CGRectGetMaxX(self.frame);
+        float maxy=CGRectGetMaxY(self.frame);
         //backgroud init
         backgroud = [SKSpriteNode spriteNodeWithImageNamed:@"bg.jpg"];
         [backgroud setName:@"back"];
         [backgroud setAnchorPoint:CGPointZero];
         [self addChild:backgroud];
+        
         //hunter init
         hunter = [SKSpriteNode spriteNodeWithImageNamed:@"scor"];
         hunter.position = CGPointMake(CGRectGetMidX(self.frame),
                                       CGRectGetMidY(self.frame));
+        [hunter setSize:CGSizeMake(25.0, 25.0)];
+        [self addChild:hunter];
+
         
         //random the prey location
-        SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"point.png"];
-        for (int i=0;i<15;i++){
+        SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"point"];
+        for (int i=0;i<2;i++){
             SKSpriteNode *prey=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(9.0, 9.0)];
-            prey.position=CGPointMake(rand()%360,rand()%480);
-            //NSLog(NSStringFromCGPoint(prey.position));
+            prey.position=CGPointMake(minx+rand()%(int)maxx,miny+rand()%(int)maxy);
+            NSLog([NSString stringWithFormat:@"%d",i]);
             [self addChild:prey];
         }
         //NSLog(NSStringFromCGPoint(CGPointMake(CGRectGetMaxX(self.frame),
           //                        CGRectGetMaxY(self.frame))));
         
-        [self addChild:hunter];
         
     }
     return self;

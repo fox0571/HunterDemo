@@ -1,0 +1,40 @@
+1.在建立以下代码时，发现运行后屏幕上并没有出现预计中的prey nodes。
+
+-(id)initWithSize:(CGSize)size {
+    if (self = [super initWithSize:size]) {
+        /* Setup your scene here */
+        //backgroud init
+        backgroud = [SKSpriteNode spriteNodeWithImageNamed:@"bg.jpg"];
+        [backgroud setName:@"back"];
+        [backgroud setAnchorPoint:CGPointZero];
+        
+        //hunter init
+        hunter = [SKSpriteNode spriteNodeWithImageNamed:@"scor"];
+        hunter.position = CGPointMake(CGRectGetMidX(self.frame),
+                                      CGRectGetMidY(self.frame));
+        [hunter setSize:CGSizeMake(25.0, 25.0)];
+
+        
+        //random the prey location
+        SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"point"];
+        for (int i=0;i<2;i++){
+            SKSpriteNode *prey=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(9.0, 9.0)];
+            prey.position=CGPointMake(minx+rand()%(int)maxx,miny+rand()%(int)maxy);
+            NSLog([NSString stringWithFormat:@"%d",i]);
+            [self addChild:prey];
+        }
+        //NSLog(NSStringFromCGPoint(CGPointMake(CGRectGetMaxX(self.frame),
+          //                        CGRectGetMaxY(self.frame))));
+        [self addChild:backgroud];
+        [self addChild:hunter];
+
+        
+    }
+    return self;
+}
+
+后研究发现原因出现在addChild的顺序上面。后加入的Child会覆盖在前面的Child上面。而代码中先添加prey，再添加backgroud，则background覆盖了prey使得prey的node存在但是无法观察到。
+将[self addChild:backgroud];这句移到for之前即解决问题。
+
+
+2.

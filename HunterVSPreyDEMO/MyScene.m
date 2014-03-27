@@ -8,12 +8,24 @@
 
 #import "MyScene.h"
 
+@implementation Food
+- (void)flash{
+    SKAction *fadeOut=[SKAction fadeOutWithDuration:1];
+    SKAction *fadeIn=[SKAction fadeInWithDuration:1];
+    SKAction *flash=[SKAction sequence:@[fadeOut,fadeIn]];
+    SKAction *flashFiveTimes=[SKAction repeatAction:flash count:5];
+    [self runAction:flashFiveTimes];
+}
+@end
+
 @implementation MyScene
 
 SKSpriteNode *backgroud;
 SKSpriteNode *hunter;
+SKSpriteNode *prey;
 SKLabelNode *labelX;
 SKLabelNode *labelY;
+SKSpriteNode *bod;
 const float speed=2.0;
 const float fontsz=7.0;
 
@@ -27,14 +39,18 @@ NSMutableArray *preyArray;
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        float minx=CGRectGetMinX(self.frame);
-        float miny=CGRectGetMinY(self.frame);
-        float maxx=CGRectGetMaxX(self.frame);
-        float maxy=CGRectGetMaxY(self.frame);
+        //float midx=CGRectGetMidX(self.frame);
+        //float midy=CGRectGetMidY(self.frame);
+        //NSLog(NSStringFromCGPoint(CGPointMake(midx , midy)));
+
+        //float maxx=CGRectGetMaxX(self.frame);
+        //float maxy=CGRectGetMaxY(self.frame);
         //backgroud init
-        backgroud = [SKSpriteNode spriteNodeWithImageNamed:@"bg.jpg"];
+        SKTexture *back=[SKTexture textureWithImageNamed:@"bg.jpg"];
+        backgroud = [SKSpriteNode spriteNodeWithTexture:back size:CGSizeMake(360, 480)];
         [backgroud setName:@"back"];
         [backgroud setAnchorPoint:CGPointZero];
+        //NSLog(NSStringFromCGSize(backgroud.size));
         [self addChild:backgroud];
         
         //hunter init
@@ -43,14 +59,22 @@ NSMutableArray *preyArray;
                                       CGRectGetMidY(self.frame));
         [hunter setSize:CGSizeMake(25.0, 25.0)];
         [self addChild:hunter];
-
+        bod=[SKSpriteNode spriteNodeWithImageNamed:@"point"];
+        bod.name=@"point";
+        bod.position=CGPointMake(250, 240);
+        [self addChild:bod];
         
         //random the prey location
         SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"point"];
-        for (int i=0;i<2;i++){
-            SKSpriteNode *prey=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(9.0, 9.0)];
-            prey.position=CGPointMake(minx+rand()%(int)maxx,miny+rand()%(int)maxy);
-            NSLog([NSString stringWithFormat:@"%d",i]);
+        for (int i=0;i<1;i++){
+            prey=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(9.0, 9.0)];
+            prey.userInteractionEnabled=NO;
+            //float x=(50+rand())%(int)maxx;
+            //float y=(120+rand())%(int)maxy;
+            prey.position=CGPointMake(300,240);
+            prey.alpha=0.67;
+            prey.name=@"prey";
+            //NSLog(NSStringFromCGPoint(CGPointMake(120, 60)));
             [self addChild:prey];
         }
         //NSLog(NSStringFromCGPoint(CGPointMake(CGRectGetMaxX(self.frame),
@@ -62,7 +86,37 @@ NSMutableArray *preyArray;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
+    UITouch *touch=[[event allTouches] anyObject];
+    CGPoint location=[touch locationInNode:backgroud];
+    SKAction *moveUp=[SKAction moveBy:CGVectorMake(0, 3) duration:1];
+    SKAction *moveDown=[SKAction moveBy:CGVectorMake(0, -3) duration:1];
+    SKAction *moveLeft=[SKAction moveBy:CGVectorMake(-3, 0) duration:1];
+    SKAction *moveRight=[SKAction moveBy:CGVectorMake(3, 0) duration:1];
+    NSLog(NSStringFromCGPoint(location));
+    
+    SKAction *fadeOut=[SKAction fadeOutWithDuration:0.5];
+    SKAction *fadeIn=[SKAction fadeInWithDuration:0.5];
+    SKAction *flash=[SKAction sequence:@[fadeOut,fadeIn]];
+    SKAction *flashFiveTimes=[SKAction repeatAction:flash count:8];
+    //SKNode *node=[self nodeAtPoint:location];
+    
+    [bod runAction:flashFiveTimes completion:^{[bod removeFromParent];}];
+    
+    if ([prey containsPoint:location]) {
+        [hunter runAction:moveUp];
+    }
+    
+    /*
+    CGPoint location=[touch locationInView:touch.view];
+    if (prey.) {
+        <#statements#>
+    }
+     */
+    
+}
+/*
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    / Called when a touch begins *
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
@@ -93,7 +147,7 @@ NSMutableArray *preyArray;
         //[self removeAllChildren];
     }
 }
-
+*/
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 }

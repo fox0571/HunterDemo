@@ -47,12 +47,12 @@ NSMutableArray *preyArray;
         //float maxy=CGRectGetMaxY(self.frame);
         //backgroud init
     
-        SKTexture *back=[SKTexture textureWithImageNamed:@"background.png"];
-        backgroud = [SKSpriteNode spriteNodeWithTexture:back size:CGSizeMake(480,320)];
+        //SKTexture *back=[SKTexture textureWithImageNamed:@"background.png"];
+        backgroud = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
         [backgroud setName:@"back"];
         //[backgroud setAnchorPoint:CGPointZero];
-        [backgroud setPosition:CGPointMake(0, 0)];
-        NSLog(NSStringFromCGSize(backgroud.size));
+        backgroud.position=CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        //NSLog(NSStringFromCGSize(backgroud.size));
         [self addChild:backgroud];
         
         //hunter init

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9812919918E6968E00EA261A /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9812919618E6968E00EA261A /* background.png */; };
-		9812919A18E6968E00EA261A /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9812919718E6968E00EA261A /* block.png */; };
-		9812919B18E6968E00EA261A /* gridblock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9812919818E6968E00EA261A /* gridblock.png */; };
+		9812919D18E6DC7900EA261A /* stone1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9812919C18E6DC7900EA261A /* stone1.png */; };
+		9812919F18E6DEC400EA261A /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9812919E18E6DEC400EA261A /* background@2x.png */; };
 		98B1D8C218D34C2A006D2489 /* BugReport.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98B1D8C118D34C2A006D2489 /* BugReport.txt */; };
 		98BE6B6C18C894B3009D5673 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE6B6B18C894B3009D5673 /* Foundation.framework */; };
 		98BE6B6E18C894B4009D5673 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE6B6D18C894B4009D5673 /* CoreGraphics.framework */; };
@@ -45,8 +45,8 @@
 
 /* Begin PBXFileReference section */
 		9812919618E6968E00EA261A /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		9812919718E6968E00EA261A /* block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block.png; sourceTree = "<group>"; };
-		9812919818E6968E00EA261A /* gridblock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridblock.png; sourceTree = "<group>"; };
+		9812919C18E6DC7900EA261A /* stone1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone1.png; sourceTree = "<group>"; };
+		9812919E18E6DEC400EA261A /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		98B1D8C118D34C2A006D2489 /* BugReport.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BugReport.txt; sourceTree = "<group>"; };
 		98BE6B6818C894B3009D5673 /* HunterVSPreyDEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HunterVSPreyDEMO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98BE6B6B18C894B3009D5673 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -143,11 +143,11 @@
 				98BE6B8518C894B4009D5673 /* MyScene.h */,
 				98BE6B8618C894B4009D5673 /* MyScene.m */,
 				9812919618E6968E00EA261A /* background.png */,
-				9812919718E6968E00EA261A /* block.png */,
-				9812919818E6968E00EA261A /* gridblock.png */,
+				9812919E18E6DEC400EA261A /* background@2x.png */,
 				98B1D8C118D34C2A006D2489 /* BugReport.txt */,
 				98BE6BEC18CA0FA3009D5673 /* bg.jpg */,
 				98BE6BEA18C9E152009D5673 /* scor.png */,
+				9812919C18E6DC7900EA261A /* stone1.png */,
 				98BE6B8818C894B4009D5673 /* Spaceship.png */,
 				98BE6BE818C9DD3F009D5673 /* point.png */,
 				98BE6B8A18C894B4009D5673 /* Images.xcassets */,
@@ -261,17 +261,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9812919B18E6968E00EA261A /* gridblock.png in Resources */,
 				98BE6B7818C894B4009D5673 /* InfoPlist.strings in Resources */,
+				9812919F18E6DEC400EA261A /* background@2x.png in Resources */,
 				98BE6B8B18C894B4009D5673 /* Images.xcassets in Resources */,
 				98BE6BEB18C9E152009D5673 /* scor.png in Resources */,
+				9812919D18E6DC7900EA261A /* stone1.png in Resources */,
 				98BE6BE918C9DD3F009D5673 /* point.png in Resources */,
 				98BE6BED18CA0FA3009D5673 /* bg.jpg in Resources */,
 				98B1D8C218D34C2A006D2489 /* BugReport.txt in Resources */,
 				98BE6B8918C894B4009D5673 /* Spaceship.png in Resources */,
 				9812919918E6968E00EA261A /* background.png in Resources */,
 				98BE6B8118C894B4009D5673 /* Main.storyboard in Resources */,
-				9812919A18E6968E00EA261A /* block.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

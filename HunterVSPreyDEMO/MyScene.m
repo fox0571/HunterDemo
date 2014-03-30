@@ -38,39 +38,32 @@ NSMutableArray *preyArray;
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
-        /* Setup your scene here */
-        //float midx=CGRectGetMidX(self.frame);
-        //float midy=CGRectGetMidY(self.frame);
-        //NSLog(NSStringFromCGPoint(CGPointMake(midx , midy)));
-
-        //float maxx=CGRectGetMaxX(self.frame);
-        //float maxy=CGRectGetMaxY(self.frame);
-        //backgroud init
-    
-        //SKTexture *back=[SKTexture textureWithImageNamed:@"background.png"];
-        backgroud = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
-        [backgroud setName:@"back"];
-        //[backgroud setAnchorPoint:CGPointZero];
-        backgroud.position=CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        /* Setup scene here */
+        SKTexture *back=[SKTexture textureWithImageNamed:@"background.png"];
+        backgroud = [SKSpriteNode spriteNodeWithTexture:back size:CGSizeMake(480,320)];
+        [backgroud setName:@"background"];
+        [backgroud setAnchorPoint:CGPointZero];
+        //backgroud.position=CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+        backgroud.position=CGPointZero;
         //NSLog(NSStringFromCGSize(backgroud.size));
         [self addChild:backgroud];
         
         //hunter init
         hunter = [SKSpriteNode spriteNodeWithImageNamed:@"scor"];
-        hunter.position = CGPointMake(CGRectGetMidX(self.frame),
+        hunter.position = CGPointMake(CGRectGetMidX(self.frame)+20,
                                       CGRectGetMidY(self.frame));
         [hunter setSize:CGSizeMake(25.0, 25.0)];
         [self addChild:hunter];
         bod=[SKSpriteNode spriteNodeWithImageNamed:@"point"];
         bod.name=@"point";
         bod.position=CGPointMake(250, 240);
-        //[self addChild:bod];
+        [self addChild:bod];
         
         //random the prey location
-        SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"point"];
+        SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"stone1"];
         for (int i=0;i<7;i++){
-            prey=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(9.0, 9.0)];
-            //prey.userInteractionEnabled=NO;
+            prey=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(28, 28)];
+            prey.userInteractionEnabled=NO;
             float x=(rand())%480;
             float y=(rand())%320;
             prey.position=CGPointMake(x,y);
@@ -90,10 +83,10 @@ NSMutableArray *preyArray;
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[event allTouches] anyObject];
     CGPoint location=[touch locationInNode:self];
-    SKAction *moveUp=[SKAction moveBy:CGVectorMake(0, 3) duration:1];
-    SKAction *moveDown=[SKAction moveBy:CGVectorMake(0, -3) duration:1];
-    SKAction *moveLeft=[SKAction moveBy:CGVectorMake(-3, 0) duration:1];
-    SKAction *moveRight=[SKAction moveBy:CGVectorMake(3, 0) duration:1];
+    SKAction *moveUp=[SKAction moveBy:CGVectorMake(0, 35) duration:1];
+    SKAction *moveDown=[SKAction moveBy:CGVectorMake(0, -35) duration:1];
+    SKAction *moveLeft=[SKAction moveBy:CGVectorMake(-35, 0) duration:1];
+    SKAction *moveRight=[SKAction moveBy:CGVectorMake(35, 0) duration:1];
     NSLog(NSStringFromCGPoint(location));
     
     SKAction *fadeOut=[SKAction fadeOutWithDuration:0.5];

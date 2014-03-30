@@ -46,10 +46,12 @@ NSMutableArray *preyArray;
         //float maxx=CGRectGetMaxX(self.frame);
         //float maxy=CGRectGetMaxY(self.frame);
         //backgroud init
-        SKTexture *back=[SKTexture textureWithImageNamed:@"bg.jpg"];
-        backgroud = [SKSpriteNode spriteNodeWithTexture:back size:CGSizeMake(360, 480)];
+    
+        //SKTexture *back=[SKTexture textureWithImageNamed:@"background.png"];
+        backgroud = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
         [backgroud setName:@"back"];
-        [backgroud setAnchorPoint:CGPointZero];
+        //[backgroud setAnchorPoint:CGPointZero];
+        backgroud.position=CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
         //NSLog(NSStringFromCGSize(backgroud.size));
         [self addChild:backgroud];
         
@@ -62,16 +64,16 @@ NSMutableArray *preyArray;
         bod=[SKSpriteNode spriteNodeWithImageNamed:@"point"];
         bod.name=@"point";
         bod.position=CGPointMake(250, 240);
-        [self addChild:bod];
+        //[self addChild:bod];
         
         //random the prey location
         SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"point"];
-        for (int i=0;i<1;i++){
+        for (int i=0;i<7;i++){
             prey=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(9.0, 9.0)];
-            prey.userInteractionEnabled=NO;
-            //float x=(50+rand())%(int)maxx;
-            //float y=(120+rand())%(int)maxy;
-            prey.position=CGPointMake(300,240);
+            //prey.userInteractionEnabled=NO;
+            float x=(rand())%480;
+            float y=(rand())%320;
+            prey.position=CGPointMake(x,y);
             prey.alpha=0.67;
             prey.name=@"prey";
             //NSLog(NSStringFromCGPoint(CGPointMake(120, 60)));
@@ -87,7 +89,7 @@ NSMutableArray *preyArray;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[event allTouches] anyObject];
-    CGPoint location=[touch locationInNode:backgroud];
+    CGPoint location=[touch locationInNode:self];
     SKAction *moveUp=[SKAction moveBy:CGVectorMake(0, 3) duration:1];
     SKAction *moveDown=[SKAction moveBy:CGVectorMake(0, -3) duration:1];
     SKAction *moveLeft=[SKAction moveBy:CGVectorMake(-3, 0) duration:1];

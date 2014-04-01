@@ -8,15 +8,6 @@
 
 #import "MyScene.h"
 
-@implementation Food
-- (void)flash{
-    SKAction *fadeOut=[SKAction fadeOutWithDuration:1];
-    SKAction *fadeIn=[SKAction fadeInWithDuration:1];
-    SKAction *flash=[SKAction sequence:@[fadeOut,fadeIn]];
-    SKAction *flashFiveTimes=[SKAction repeatAction:flash count:5];
-    [self runAction:flashFiveTimes];
-}
-@end
 
 @implementation MyScene
 
@@ -28,9 +19,9 @@ SKSpriteNode *arrowLeft;
 SKSpriteNode *arrowRight;
 SKLabelNode *labelX;
 SKLabelNode *labelY;
-SKSpriteNode *bod;
 const float speed=18.0;
 const float fontsz=7.0;
+const float flashDeltaTime=0.9;
 
 int run=0;
 //CGPoint *start=CGPointMake(240, 160);
@@ -57,11 +48,7 @@ NSMutableArray *preyArray;
                                       CGRectGetMidY(self.frame));
         [hunter setSize:CGSizeMake(25.0, 25.0)];
         [self addChild:hunter];
-        bod=[SKSpriteNode spriteNodeWithImageNamed:@"point"];
-        bod.name=@"point";
-        bod.position=CGPointMake(430, 240);
-        [self addChild:bod];
-        
+       
         //random the prey location
         SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"stonegezi"];
         arrowUp=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(28,28)];
@@ -101,8 +88,36 @@ NSMutableArray *preyArray;
 //add food mothod begins
 - (void) addFood{
     //creat sprite node
-    SKSpriteNode *food
+    SKTexture *foodTexture=[SKTexture textureWithImageNamed:@"food_rabbit"];
+    SKTexture *blockTexture=[SKTexture textureWithImageNamed:@"stonegezi"];
+    SKSpriteNode *food=[SKSpriteNode spriteNodeWithTexture:foodTexture size:CGSizeMake(35,35)];
+    SKSpriteNode *stoneGezi=[SKSpriteNode spriteNodeWithTexture:blockTexture size:CGSizeMake(35, 35)];
+    //calculate the random position of food
+    int minX=food.size.width/2;
+    int minY=food.size.height/2;
+    int maxX=self.frame.size.width-minX;
+    int maxY=self.frame.size.height-minY;
+    int rangeX=maxX-minX;
+    int rangeY=maxY-minY;
+    int actualX=arc4random()%rangeX+minX;
+    int actualY=arc4random()%rangeY+minY;
+    food.position=CGPointMake(actualX, actualY);
+    stoneGezi.position=CGPointMake(actualX, actualY);
+    [self addChild:food];
+    
+    //add action for food
+    SKAction *fadeOut=[SKAction fadeOutWithDuration:flashDeltaTime];
+    SKAction *fadeIn=[SKAction fadeInWithDuration:flashDeltaTime];
+    SKAction *flash=[SKAction sequence:@[fadeOut,fadeIn]];
+    SKAction *flashTimes=[SKAction repeatAction:flash count:6];
+    [food runAction:flashTimes completion:^{
+        [food removeFromParent];
+        [self addChild:stoneGezi];
+    
+    }];
+    
 }
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch=[[event allTouches] anyObject];
     CGPoint location=[touch locationInNode:self];
@@ -112,16 +127,9 @@ NSMutableArray *preyArray;
     SKAction *moveRight=[SKAction moveBy:CGVectorMake(speed, 0) duration:1];
     //NSLog(NSStringFromCGPoint(location));
     
-    SKAction *fadeOut=[SKAction fadeOutWithDuration:0.5];
-    SKAction *fadeIn=[SKAction fadeInWithDuration:0.5];
-    SKAction *flash=[SKAction sequence:@[fadeOut,fadeIn]];
-    SKAction *flashFiveTimes=[SKAction repeatAction:flash count:8];
-    //SKNode *node=[self nodeAtPoint:location];
-    
-    [bod runAction:flashFiveTimes completion:^{[bod removeFromParent];}];
-    
     if ([arrowUp containsPoint:location]) {
         [hunter runAction:moveUp];
+        [self addFood];
     } else
     if ([arrowDown containsPoint:location]) {
         [hunter runAction:moveDown];

@@ -50,11 +50,29 @@ NSMutableArray *preyArray;
         [self addChild:hunter];
        
         //random the prey location
-        SKTexture *preyTextures=[SKTexture textureWithImageNamed:@"stonegezi"];
-        arrowUp=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(28,28)];
-        arrowDown=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(28,28)];
-        arrowLeft=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(28,28)];
-        arrowRight=[SKSpriteNode spriteNodeWithTexture:preyTextures size:CGSizeMake(28,28)];
+        SKTexture *f1=[SKTexture textureWithImageNamed:@"arrowright"];
+        SKTexture *f2=[SKTexture textureWithImageNamed:@"arrowleft"];
+        SKTexture *f3=[SKTexture textureWithImageNamed:@"arrowup"];
+        SKTexture *f4=[SKTexture textureWithImageNamed:@"arrowdown"];
+
+        /*
+        SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"arrows"];
+        SKTexture *f1 = [atlas textureNamed:@"arrowright.png"];
+        SKTexture *f2 = [atlas textureNamed:@"arrowleft.png"];
+        SKTexture *f3 = [atlas textureNamed:@"arrowup.png"];
+        SKTexture *f4 = [atlas textureNamed:@"arrowdown.png"];
+        */
+        arrowUp=[SKSpriteNode spriteNodeWithTexture:f3 size:CGSizeMake(28,38)];
+        arrowDown=[SKSpriteNode spriteNodeWithTexture:f4 size:CGSizeMake(28,38)];
+        arrowLeft=[SKSpriteNode spriteNodeWithTexture:f2 size:CGSizeMake(38,28)];
+        arrowRight=[SKSpriteNode spriteNodeWithTexture:f1 size:CGSizeMake(38,28)];
+        
+        /*
+        arrowUp=[SKSpriteNode spriteNodeWithImageNamed:@"arrowup"];
+        arrowDown=[SKSpriteNode spriteNodeWithImageNamed:@"arrowdown"];
+        arrowLeft=[SKSpriteNode spriteNodeWithImageNamed:@"arrowleft"];
+        arrowRight=[SKSpriteNode spriteNodeWithImageNamed:@"arrowright"];
+         */
         arrowUp.position=CGPointMake(430, 70);
         arrowDown.position=CGPointMake(430, 10);
         arrowLeft.position=CGPointMake(400, 40);

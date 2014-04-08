@@ -43,7 +43,7 @@
         // Create and configure the scene.
         SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
         scene.scaleMode = SKSceneScaleModeAspectFill;
-        
+        //scene.anchorPoint=CGPointZero;
         // Present the scene.
         [skView presentScene:scene];
     } 

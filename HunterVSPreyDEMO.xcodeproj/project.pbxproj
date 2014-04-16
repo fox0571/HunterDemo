@@ -17,6 +17,9 @@
 		981291AD18F4325700EA261A /* arrowleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 981291A918F4325700EA261A /* arrowleft.png */; };
 		981291AE18F4325700EA261A /* arrowright.png in Resources */ = {isa = PBXBuildFile; fileRef = 981291AA18F4325700EA261A /* arrowright.png */; };
 		981291AF18F4325700EA261A /* arrowup.png in Resources */ = {isa = PBXBuildFile; fileRef = 981291AB18F4325700EA261A /* arrowup.png */; };
+		981291B618FEC49500EA261A /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 981291B518FEC49500EA261A /* Character.m */; };
+		981291B918FEC4B000EA261A /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = 981291B818FEC4B000EA261A /* Boss.m */; };
+		981291BC18FEC4BD00EA261A /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 981291BB18FEC4BD00EA261A /* Player.m */; };
 		98B1D8C218D34C2A006D2489 /* BugReport.txt in Resources */ = {isa = PBXBuildFile; fileRef = 98B1D8C118D34C2A006D2489 /* BugReport.txt */; };
 		98BE6B6C18C894B3009D5673 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE6B6B18C894B3009D5673 /* Foundation.framework */; };
 		98BE6B6E18C894B4009D5673 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE6B6D18C894B4009D5673 /* CoreGraphics.framework */; };
@@ -61,6 +64,12 @@
 		981291A918F4325700EA261A /* arrowleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowleft.png; sourceTree = "<group>"; };
 		981291AA18F4325700EA261A /* arrowright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowright.png; sourceTree = "<group>"; };
 		981291AB18F4325700EA261A /* arrowup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowup.png; sourceTree = "<group>"; };
+		981291B418FEC49500EA261A /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		981291B518FEC49500EA261A /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
+		981291B718FEC4B000EA261A /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
+		981291B818FEC4B000EA261A /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boss.m; sourceTree = "<group>"; };
+		981291BA18FEC4BD00EA261A /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		981291BB18FEC4BD00EA261A /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		98B1D8C118D34C2A006D2489 /* BugReport.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BugReport.txt; sourceTree = "<group>"; };
 		98BE6B6818C894B3009D5673 /* HunterVSPreyDEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HunterVSPreyDEMO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98BE6B6B18C894B3009D5673 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -155,6 +164,12 @@
 				98BE6B7D18C894B4009D5673 /* AppDelegate.m */,
 				981291A418E8531800EA261A /* food_rabbit.png */,
 				981291A518E8531800EA261A /* player.png */,
+				981291B418FEC49500EA261A /* Character.h */,
+				981291B518FEC49500EA261A /* Character.m */,
+				981291B718FEC4B000EA261A /* Boss.h */,
+				981291BA18FEC4BD00EA261A /* Player.h */,
+				981291BB18FEC4BD00EA261A /* Player.m */,
+				981291B818FEC4B000EA261A /* Boss.m */,
 				98BE6B7F18C894B4009D5673 /* Main.storyboard */,
 				98BE6B8218C894B4009D5673 /* ViewController.h */,
 				98BE6B8318C894B4009D5673 /* ViewController.m */,
@@ -318,9 +333,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				981291B918FEC4B000EA261A /* Boss.m in Sources */,
 				98BE6B8718C894B4009D5673 /* MyScene.m in Sources */,
+				981291B618FEC49500EA261A /* Character.m in Sources */,
 				98BE6B8418C894B4009D5673 /* ViewController.m in Sources */,
 				98BE6B7E18C894B4009D5673 /* AppDelegate.m in Sources */,
+				981291BC18FEC4BD00EA261A /* Player.m in Sources */,
 				98BE6B7A18C894B4009D5673 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
